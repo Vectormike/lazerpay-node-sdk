@@ -21,6 +21,11 @@ jobs:
 
       - name: Install deps and build (with cache)
         uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Lint
         run: yarn lint
